@@ -1,0 +1,1698 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cara — Portal do Aluno</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        font-size: 62.5%; /* 1rem = 10px */
+      }
+
+      :root {
+        --primary: #f5a623;
+        --secondary: #ffc107;
+        --tertiary: #f39c12;
+        --primary-dark: #d4881a;
+        --primary-light: #fff3d6;
+        --white: #ffffff;
+        --dark: #1a1a2e;
+        --dark-2: #16213e;
+        --gray: #6b7280;
+        --gray-light: #f3f4f6;
+        --gray-border: #e5e7eb;
+        --text: #1f2937;
+        --text-muted: #6b7280;
+        --radius: 1.2rem;
+        --radius-lg: 2rem;
+        --shadow: 0 0.4rem 2.4rem rgba(245, 166, 35, 0.15);
+        --shadow-md: 0 0.8rem 4rem rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        font-size: 1.6rem;
+        color: var(--text);
+        background: #fafaf7;
+        overflow-x: hidden;
+      }
+
+      /* ── HEADER ── */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(1.2rem);
+        border-bottom: 0.1rem solid var(--gray-border);
+        padding: 0 2rem;
+        height: 6.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & .logo {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          text-decoration: none;
+
+          & .logo-icon {
+            width: 5rem;
+            height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+
+          & .logo-text {
+            font-family: "Sora", sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--dark);
+
+            & span {
+              color: var(--primary);
+            }
+          }
+        }
+
+        & nav {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+
+          & a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 1.4rem;
+            transition: color 0.2s;
+
+            &:hover {
+              color: var(--primary);
+            }
+
+            &.btn-login {
+              background: var(--primary);
+              color: var(--white);
+              padding: 0.6rem 1.4rem;
+              border-radius: 5rem;
+              font-weight: 700;
+              transition:
+                background 0.2s,
+                transform 0.2s;
+              box-shadow: 0 0.4rem 1.2rem rgba(245, 166, 35, 0.35);
+
+              &:hover {
+                background: var(--primary-dark);
+                color: var(--white);
+                transform: translateY(-0.1rem);
+              }
+            }
+          }
+        }
+
+        & .hamburger {
+          display: none;
+          flex-direction: column;
+          gap: 0.5rem;
+          cursor: pointer;
+          background: none;
+          border: none;
+          padding: 0.4rem;
+
+          & span {
+            display: block;
+            width: 2.4rem;
+            height: 0.2rem;
+            background: var(--dark);
+            border-radius: 0.2rem;
+            transition: all 0.3s;
+          }
+        }
+      }
+
+      /* ── HERO ── */
+      .hero {
+        display: flex;
+        justify-content: center;
+        margin-top: 6.8rem;
+        min-height: calc(100vh - 6.8rem);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 4rem;
+        padding: 5rem 5%;
+        background: linear-gradient(
+          160deg,
+          #fffdf5 0%,
+          #fff8e1 50%,
+          #fafaf7 100%
+        );
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 60rem;
+          height: 60rem;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle,
+            rgba(245, 166, 35, 0.08) 0%,
+            transparent 70%
+          );
+          right: -10rem;
+          top: -10rem;
+          pointer-events: none;
+        }
+
+        & .hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
+          background: var(--primary-light);
+          color: var(--primary-dark);
+          padding: 0.4rem 1rem;
+          border-radius: 5rem;
+          font-weight: 700;
+          font-size: 1.2rem;
+          margin-bottom: 1.5rem;
+          border: 0.1rem solid rgba(245, 166, 35, 0.3);
+        }
+
+        & h1 {
+          font-family: "Sora", sans-serif;
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 700;
+          line-height: 1.2;
+          color: var(--dark);
+          margin-bottom: 1.2rem;
+
+          & em {
+            font-style: normal;
+            color: var(--primary);
+          }
+        }
+
+        & p {
+          font-size: 1.6rem;
+          color: var(--text-muted);
+          line-height: 1.7;
+          margin-bottom: 2rem;
+          max-width: 50rem;
+        }
+
+        & .hero-btns {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+
+        & .hero-stats {
+          display: flex;
+          gap: 2rem;
+          margin-top: 2.5rem;
+          flex-wrap: wrap;
+
+          & .stat-item {
+            text-align: left;
+
+            & .stat-number {
+              font-family: "Sora", sans-serif;
+              font-size: 2.8rem;
+              font-weight: 700;
+              color: var(--primary);
+              display: block;
+            }
+
+            & .stat-label {
+              font-size: 1.1rem;
+              color: var(--text-muted);
+              font-weight: 600;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+            }
+          }
+        }
+      }
+
+      /* ── HERO VISUAL ── */
+      .hero-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .hero-card-stack {
+          position: relative;
+          width: 34rem;
+          height: 42rem;
+
+          & .hcard {
+            position: absolute;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            border: 0.1rem solid var(--gray-border);
+
+            &.hcard-main {
+              width: 30rem;
+              left: 2rem;
+              top: 2rem;
+              z-index: 3;
+              animation: float 4s ease-in-out infinite;
+            }
+
+            &.hcard-back1 {
+              width: 28rem;
+              left: 1rem;
+              top: 1rem;
+              z-index: 2;
+              background: #fff8e1;
+              transform: rotate(-3deg);
+            }
+
+            &.hcard-back2 {
+              width: 26rem;
+              left: 3rem;
+              top: 0;
+              z-index: 1;
+              background: #fff3cd;
+              transform: rotate(4deg);
+            }
+          }
+
+          & .hcard-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 0.1rem solid var(--gray-border);
+
+            & .avatar {
+              width: 4rem;
+              height: 4rem;
+              border-radius: 50%;
+              background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--secondary)
+              );
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-weight: 800;
+              font-size: 1.2rem;
+            }
+
+            & .hcard-name {
+              font-weight: 700;
+              font-size: 1.3rem;
+            }
+
+            & .hcard-sub {
+              font-size: 1.1rem;
+              color: var(--text-muted);
+            }
+          }
+
+          & .grade-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 0.1rem solid var(--gray-border);
+            font-size: 1.3rem;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            & .grade-subject {
+              color: var(--text-muted);
+              font-weight: 600;
+            }
+
+            & .grade-badge {
+              padding: 0.2rem 0.6rem;
+              border-radius: 5rem;
+              font-weight: 800;
+              font-size: 1.2rem;
+
+              &.grade-a {
+                background: #dcfce7;
+                color: #16a34a;
+              }
+              &.grade-b {
+                background: #dbeafe;
+                color: #2563eb;
+              }
+              &.grade-c {
+                background: #fff3d6;
+                color: var(--primary-dark);
+              }
+            }
+          }
+        }
+
+        & .floating-badge {
+          position: absolute;
+          background: var(--white);
+          border-radius: var(--radius);
+          padding: 0.6rem 1rem;
+          box-shadow: 0 0.4rem 2rem rgba(0, 0, 0, 0.1);
+          font-size: 1.1rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          z-index: 10;
+          white-space: nowrap;
+
+          &.fb-1 {
+            bottom: 3rem;
+            left: -3rem;
+            color: #16a34a;
+            animation: float 3.5s ease-in-out infinite 0.5s;
+          }
+
+          &.fb-2 {
+            top: 1rem;
+            right: -2rem;
+            color: var(--primary-dark);
+            animation: float 3s ease-in-out infinite 1s;
+          }
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-0.8rem);
+        }
+      }
+
+      /* ── BOTÕES GLOBAIS ── */
+      .btn-primary {
+        background: var(--primary);
+        color: var(--white);
+        padding: 1rem 2rem;
+        border-radius: 5rem;
+        font-weight: 800;
+        font-size: 1.4rem;
+        text-decoration: none;
+        box-shadow: 0 0.6rem 2rem rgba(245, 166, 35, 0.4);
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+
+        &:hover {
+          background: var(--primary-dark);
+          transform: translateY(-0.2rem);
+          box-shadow: 0 1rem 2.8rem rgba(245, 166, 35, 0.45);
+        }
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--dark);
+        padding: 1rem 2rem;
+        border-radius: 5rem;
+        font-weight: 700;
+        font-size: 1.4rem;
+        text-decoration: none;
+        border: 0.2rem solid var(--gray-border);
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+
+        &:hover {
+          border-color: var(--primary);
+          color: var(--primary);
+        }
+      }
+
+      .btn-white {
+        background: var(--white);
+        color: var(--primary-dark);
+        padding: 1rem 2.2rem;
+        border-radius: 5rem;
+        font-weight: 800;
+        font-size: 1.4rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.15);
+        transition: all 0.2s;
+
+        &:hover {
+          transform: translateY(-0.2rem);
+          box-shadow: 0 1rem 2.8rem rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* ── SECTION BASE ── */
+      section {
+        padding: 5rem 5%;
+      }
+
+      .section-tag {
+        display: inline-block;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        padding: 0.3rem 1rem;
+        border-radius: 5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 0.75rem;
+        line-height: 1.25;
+      }
+
+      .section-sub {
+        color: var(--text-muted);
+        font-size: 1.5rem;
+        max-width: 54rem;
+        line-height: 1.6;
+      }
+
+      .section-header {
+        margin-bottom: 3rem;
+      }
+
+      /* ── FUNCIONALIDADES ── */
+      .features-section {
+        background: var(--white);
+
+        & .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+          gap: 1.5rem;
+
+          & .feature-card {
+            background: #fafaf7;
+            border: 0.1rem solid var(--gray-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              height: 0.3rem;
+              background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary)
+              );
+              transform: scaleX(0);
+              transform-origin: left;
+              transition: transform 0.3s;
+            }
+
+            &:hover {
+              transform: translateY(-0.4rem);
+              box-shadow: var(--shadow);
+              border-color: rgba(245, 166, 35, 0.3);
+
+              &::after {
+                transform: scaleX(1);
+              }
+            }
+
+            & .feature-icon {
+              width: 5.2rem;
+              height: 5.2rem;
+              border-radius: 1.4rem;
+              background: var(--primary-light);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 2.2rem;
+              margin-bottom: 1.2rem;
+            }
+
+            & h3 {
+              font-weight: 700;
+              font-size: 1.5rem;
+              margin-bottom: 0.5rem;
+              color: var(--dark);
+            }
+
+            & p {
+              color: var(--text-muted);
+              font-size: 1.3rem;
+              line-height: 1.6;
+            }
+          }
+        }
+      }
+
+      /* ── CALENDÁRIO ── */
+      .calendar-section {
+        background: linear-gradient(160deg, #1a1a2e 0%, #16213e 100%);
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 50rem;
+          height: 50rem;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle,
+            rgba(245, 166, 35, 0.1) 0%,
+            transparent 70%
+          );
+          top: -10rem;
+          right: -10rem;
+          pointer-events: none;
+        }
+
+        & .section-title {
+          color: var(--white);
+        }
+        & .section-sub {
+          color: rgba(255, 255, 255, 0.6);
+        }
+        & .section-tag {
+          background: rgba(245, 166, 35, 0.2);
+          color: var(--secondary);
+        }
+
+        & .calendar-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+          align-items: start;
+        }
+
+        & .calendar {
+          background: rgba(255, 255, 255, 0.05);
+          border: 0.1rem solid rgba(255, 255, 255, 0.1);
+          border-radius: var(--radius-lg);
+          padding: 1.5rem;
+          backdrop-filter: blur(1rem);
+
+          & .cal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+
+            & .cal-title {
+              font-family: "Sora", sans-serif;
+              font-weight: 700;
+              font-size: 1.4rem;
+              color: var(--white);
+            }
+
+            & .cal-nav {
+              display: flex;
+              gap: 0.8rem;
+
+              & .cal-btn {
+                width: 3rem;
+                height: 3rem;
+                border-radius: 0.8rem;
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: var(--white);
+                cursor: pointer;
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s;
+
+                &:hover {
+                  background: rgba(245, 166, 35, 0.3);
+                }
+              }
+            }
+          }
+
+          & .cal-days-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.4rem;
+            margin-bottom: 0.8rem;
+
+            & .cal-day-name {
+              text-align: center;
+              font-size: 1rem;
+              font-weight: 700;
+              color: rgba(255, 255, 255, 0.4);
+              text-transform: uppercase;
+              padding: 0.4rem;
+            }
+          }
+
+          & .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.4rem;
+
+            & .cal-day {
+              aspect-ratio: 1;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 0.8rem;
+              font-size: 1.2rem;
+              font-weight: 600;
+              color: rgba(255, 255, 255, 0.6);
+              cursor: pointer;
+              transition: all 0.2s;
+              position: relative;
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: var(--white);
+              }
+
+              &.today {
+                background: var(--primary);
+                color: var(--white);
+                font-weight: 800;
+                box-shadow: 0 0.4rem 1.2rem rgba(245, 166, 35, 0.4);
+              }
+
+              &.has-event::after {
+                content: "";
+                position: absolute;
+                bottom: 0.4rem;
+                width: 0.4rem;
+                height: 0.4rem;
+                border-radius: 50%;
+                background: var(--secondary);
+              }
+
+              &.other-month {
+                opacity: 0.25;
+              }
+            }
+          }
+        }
+
+        & .events-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          & h3 {
+            font-family: "Sora", sans-serif;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+          }
+
+          & .event-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 0.1rem solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: background 0.2s;
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.1);
+            }
+
+            & .event-date-box {
+              min-width: 4.4rem;
+              text-align: center;
+
+              & .event-day {
+                font-family: "Sora", sans-serif;
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: var(--primary);
+                line-height: 1;
+              }
+
+              & .event-month {
+                font-size: 1rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.4);
+              }
+            }
+
+            & .event-dot {
+              width: 0.2rem;
+              height: 3.6rem;
+              border-radius: 0.2rem;
+            }
+
+            & .event-info {
+              flex: 1;
+
+              & .event-title {
+                font-weight: 700;
+                font-size: 1.3rem;
+                color: var(--white);
+                margin-bottom: 0.2rem;
+              }
+
+              & .event-meta {
+                font-size: 1.1rem;
+                color: rgba(255, 255, 255, 0.5);
+              }
+            }
+
+            & .event-type {
+              font-size: 1rem;
+              font-weight: 700;
+              padding: 0.2rem 0.6rem;
+              border-radius: 5rem;
+            }
+          }
+        }
+      }
+
+      /* ── PERFIS ── */
+      .profiles-section {
+        background: #fafaf7;
+
+        & .profiles-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+          align-items: center;
+
+          & .profile-card {
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            border: 0.1rem solid var(--gray-border);
+
+            &.profile-aluno {
+              background: var(--white);
+
+              & h3 {
+                color: var(--dark);
+              }
+              & > p {
+                color: var(--text-muted);
+              }
+              & li {
+                color: var(--text);
+              }
+            }
+
+            &.profile-prof {
+              background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--tertiary)
+              );
+              color: var(--white);
+
+              & > p {
+                color: rgba(255, 255, 255, 0.85);
+              }
+              & li {
+                color: rgba(255, 255, 255, 0.9);
+              }
+            }
+
+            & .profile-icon {
+              font-size: 3.5rem;
+              margin-bottom: 1.2rem;
+              display: block;
+            }
+
+            & h3 {
+              font-family: "Sora", sans-serif;
+              font-weight: 700;
+              font-size: 2rem;
+              margin-bottom: 0.5rem;
+            }
+
+            & > p {
+              font-size: 1.3rem;
+              line-height: 1.6;
+              margin-bottom: 1.5rem;
+            }
+
+            & .profile-features {
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              gap: 0.6rem;
+
+              & li {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                font-size: 1.3rem;
+                font-weight: 600;
+
+                & .check-icon {
+                  width: 2rem;
+                  height: 2rem;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 1rem;
+                  flex-shrink: 0;
+
+                  &.check-aluno {
+                    background: #dcfce7;
+                    color: #16a34a;
+                  }
+                  &.check-prof {
+                    background: rgba(255, 255, 255, 0.25);
+                    color: var(--white);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      /* ── COMO FUNCIONA ── */
+      .how-section {
+        background: var(--white);
+
+        & .steps-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+          gap: 2rem;
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 2.8rem;
+            left: 10%;
+            right: 10%;
+            height: 0.2rem;
+            background: linear-gradient(
+              90deg,
+              var(--primary),
+              var(--secondary)
+            );
+            z-index: 0;
+          }
+
+          & .step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+
+            & .step-num {
+              width: 5.6rem;
+              height: 5.6rem;
+              border-radius: 50%;
+              background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--secondary)
+              );
+              color: var(--white);
+              font-family: "Sora", sans-serif;
+              font-weight: 800;
+              font-size: 1.8rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 auto 1.2rem;
+              box-shadow: 0 0.6rem 2rem rgba(245, 166, 35, 0.35);
+            }
+
+            & h4 {
+              font-weight: 700;
+              font-size: 1.4rem;
+              margin-bottom: 0.4rem;
+              color: var(--dark);
+            }
+
+            & p {
+              font-size: 1.2rem;
+              color: var(--text-muted);
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      /* ── CTA ── */
+      .cta-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--tertiary) 100%
+        );
+        text-align: center;
+        padding: 5rem 5%;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: "🎓";
+          position: absolute;
+          font-size: 20rem;
+          opacity: 0.04;
+          top: -5rem;
+          left: -5rem;
+          pointer-events: none;
+        }
+
+        & h2 {
+          font-family: "Sora", sans-serif;
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
+          font-weight: 700;
+          color: var(--white);
+          margin-bottom: 1rem;
+        }
+
+        & p {
+          color: rgba(255, 255, 255, 0.85);
+          font-size: 1.5rem;
+          margin-bottom: 2rem;
+          max-width: 50rem;
+          margin-left: auto;
+          margin-right: auto;
+          line-height: 1.6;
+        }
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--dark);
+        color: rgba(255, 255, 255, 0.6);
+        padding: 3rem 5% 2rem;
+
+        & .footer-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr;
+          gap: 3rem;
+          margin-bottom: 2.5rem;
+
+          & .footer-brand {
+            & .logo {
+              text-decoration: none;
+            }
+            & .logo-text {
+              color: var(--white);
+            }
+
+            & .footer-desc {
+              font-size: 1.2rem;
+              margin-top: 0.75rem;
+              line-height: 1.6;
+            }
+          }
+
+          & .footer-col {
+            & h4 {
+              color: var(--white);
+              font-weight: 700;
+              font-size: 1.2rem;
+              margin-bottom: 1rem;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+            }
+
+            & ul {
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+
+              & a {
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration: none;
+                font-size: 1.2rem;
+                transition: color 0.2s;
+
+                &:hover {
+                  color: var(--primary);
+                }
+              }
+            }
+          }
+        }
+
+        & .footer-bottom {
+          border-top: 0.1rem solid rgba(255, 255, 255, 0.08);
+          padding-top: 1.5rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 1.2rem;
+          flex-wrap: wrap;
+          gap: 1rem;
+
+          & span {
+            color: var(--primary);
+          }
+        }
+      }
+
+      /* ── ANIMAÇÕES ── */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(2.4rem);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+
+        &.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        header {
+          & nav a:not(.btn-login) {
+            display: none;
+          }
+          & .hamburger {
+            display: flex;
+          }
+        }
+
+        .hero {
+          display: flex;
+          justify-content: center;
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 2rem;
+          padding: 3rem 5%;
+
+          & .hero-btns {
+            justify-content: center;
+          }
+          & .hero-stats {
+            justify-content: center;
+          }
+          & p {
+            margin: 0 auto 2rem;
+          }
+        }
+
+        .hero-visual {
+          display: none;
+        }
+        .calendar-section .calendar-wrapper {
+          grid-template-columns: 1fr;
+        }
+        .profiles-section .profiles-grid {
+          grid-template-columns: 1fr;
+        }
+        .how-section .steps-grid::before {
+          display: none;
+        }
+
+        footer .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 600px) {
+        section {
+          padding: 3.5rem 5%;
+        }
+        .hero {
+          padding: 2.5rem 5%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── HEADER ── -->
+    <header>
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <img src="logo.png" alt="Logo Cara" />
+        </div>
+        <span class="logo-text">C<span>ar</span>a</span>
+      </a>
+
+      <nav>
+        <a href="#funcionalidades">Funcionalidades</a>
+        <a href="#calendario">Calendário</a>
+        <a href="#perfis">Para quem é</a>
+        <a href="#login" class="btn-login">Entrar</a>
+      </nav>
+
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section class="hero">
+      <div class="hero-content fade-in">
+        <div class="hero-badge">✨ Portal Escolar 2025</div>
+        <h1>Seu aprendizado<br />em um só <em>lugar</em></h1>
+        <p>
+          Acesse suas notas, acompanhe atividades, veja o calendário escolar e
+          fique por dentro de tudo — do fundamental ao médio.
+        </p>
+        <div class="hero-btns">
+          <a href="#login" class="btn-primary">🚀 Acessar minha conta</a>
+          <a href="#funcionalidades" class="btn-outline">Ver funcionalidades</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Alunos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">40+</span>
+            <span class="stat-label">Professores</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">18</span>
+            <span class="stat-label">Turmas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hcard hcard-back2"></div>
+          <div class="hcard hcard-back1"></div>
+          <div class="hcard hcard-main">
+            <div class="hcard-header">
+              <div class="avatar">JS</div>
+              <div>
+                <div class="hcard-name">João Silva</div>
+                <div class="hcard-sub">9º Ano A — 2025</div>
+              </div>
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Matemática</span>
+              <span class="grade-badge grade-a">9.5</span>
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Português</span>
+              <span class="grade-badge grade-b">8.2</span>
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Ciências</span>
+              <span class="grade-badge grade-c">7.8</span>
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">História</span>
+              <span class="grade-badge grade-a">9.0</span>
+            </div>
+            <div class="grade-row">
+              <span class="grade-subject">Geografia</span>
+              <span class="grade-badge grade-b">8.5</span>
+            </div>
+          </div>
+
+          <div class="floating-badge fb-1">✅ Atividade entregue!</div>
+          <div class="floating-badge fb-2">📅 Prova amanhã</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FUNCIONALIDADES ── -->
+    <section class="features-section" id="funcionalidades">
+      <div class="section-header fade-in">
+        <div class="section-tag">Funcionalidades</div>
+        <h2 class="section-title">
+          Tudo que você precisa<br />para se organizar
+        </h2>
+        <p class="section-sub">
+          Desenvolvido especialmente para a realidade das escolas públicas
+          brasileiras.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📊</div>
+          <h3>Notas em tempo real</h3>
+          <p>
+            Acompanhe suas notas por matéria assim que o professor lançar. Chega
+            de surpresas no boletim!
+          </p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📝</div>
+          <h3>Atividades e tarefas</h3>
+          <p>
+            Veja todas as atividades postadas pelos professores com prazo,
+            enunciado e status de entrega.
+          </p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📅</div>
+          <h3>Calendário escolar</h3>
+          <p>
+            Provas, eventos, feriados e atividades tudo em um calendário
+            interativo e visual.
+          </p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🔔</div>
+          <h3>Avisos da escola</h3>
+          <p>
+            Fique por dentro de comunicados, reuniões de pais e eventos
+            importantes da escola.
+          </p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">👤</div>
+          <h3>Perfil do aluno</h3>
+          <p>
+            Histórico de notas, frequência e informações da turma organizadas em
+            um só perfil.
+          </p>
+        </div>
+        <div class="feature-card fade-in">
+          <div class="feature-icon">📱</div>
+          <h3>Acesso pelo celular</h3>
+          <p>
+            Funciona no navegador do celular, sem precisar instalar nada. Fácil
+            e rápido.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CALENDÁRIO ── -->
+    <section class="calendar-section" id="calendario">
+      <div class="calendar-wrapper">
+        <div>
+          <div class="section-tag">Calendário</div>
+          <h2 class="section-title">Organize sua rotina escolar</h2>
+          <p class="section-sub">
+            Veja provas, atividades e eventos do mês. Nunca mais esqueça uma
+            data importante.
+          </p>
+          <br />
+          <div class="calendar fade-in">
+            <div class="cal-header">
+              <span class="cal-title" id="cal-month-title"></span>
+              <div class="cal-nav">
+                <button class="cal-btn" id="cal-prev">&#8249;</button>
+                <button class="cal-btn" id="cal-next">&#8250;</button>
+              </div>
+            </div>
+            <div class="cal-days-header">
+              <div class="cal-day-name">D</div>
+              <div class="cal-day-name">S</div>
+              <div class="cal-day-name">T</div>
+              <div class="cal-day-name">Q</div>
+              <div class="cal-day-name">Q</div>
+              <div class="cal-day-name">S</div>
+              <div class="cal-day-name">S</div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+        </div>
+
+        <div class="events-list fade-in">
+          <h3>Próximos eventos</h3>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-day">16</div>
+              <div class="event-month">Abr</div>
+            </div>
+            <div class="event-dot" style="background: #f59e0b"></div>
+            <div class="event-info">
+              <div class="event-title">Prova de Matemática</div>
+              <div class="event-meta">8º Ano — Cap. 4 e 5</div>
+            </div>
+            <span
+              class="event-type"
+              style="background: rgba(245, 158, 11, 0.15); color: #f59e0b"
+              >Prova</span
+            >
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-day">18</div>
+              <div class="event-month">Abr</div>
+            </div>
+            <div class="event-dot" style="background: #3b82f6"></div>
+            <div class="event-info">
+              <div class="event-title">Entrega: Redação</div>
+              <div class="event-meta">Português — Prof. Ana Lima</div>
+            </div>
+            <span
+              class="event-type"
+              style="background: rgba(59, 130, 246, 0.15); color: #3b82f6"
+              >Tarefa</span
+            >
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-day">22</div>
+              <div class="event-month">Abr</div>
+            </div>
+            <div class="event-dot" style="background: #10b981"></div>
+            <div class="event-info">
+              <div class="event-title">Reunião de Pais</div>
+              <div class="event-meta">19h — Auditório</div>
+            </div>
+            <span
+              class="event-type"
+              style="background: rgba(16, 185, 129, 0.15); color: #10b981"
+              >Evento</span
+            >
+          </div>
+
+          <div class="event-item">
+            <div class="event-date-box">
+              <div class="event-day">25</div>
+              <div class="event-month">Abr</div>
+            </div>
+            <div class="event-dot" style="background: #8b5cf6"></div>
+            <div class="event-info">
+              <div class="event-title">Gincana Escolar</div>
+              <div class="event-meta">Todos os alunos — Quadra</div>
+            </div>
+            <span
+              class="event-type"
+              style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6"
+              >Evento</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PERFIS ── -->
+    <section class="profiles-section" id="perfis">
+      <div class="section-header fade-in">
+        <div class="section-tag">Para quem é</div>
+        <h2 class="section-title">Um portal para todos</h2>
+        <p class="section-sub">
+          Funciona de formas diferentes para alunos e professores.
+        </p>
+      </div>
+
+      <div class="profiles-grid fade-in">
+        <div class="profile-card profile-aluno">
+          <span class="profile-icon">🎒</span>
+          <h3>Para o Aluno</h3>
+          <p>
+            Acesse suas notas, veja as atividades postadas e acompanhe o
+            calendário escolar.
+          </p>
+          <ul class="profile-features">
+            <li>
+              <span class="check-icon check-aluno">✓</span> Ver notas por
+              matéria e bimestre
+            </li>
+            <li>
+              <span class="check-icon check-aluno">✓</span> Acompanhar
+              atividades com prazo
+            </li>
+            <li>
+              <span class="check-icon check-aluno">✓</span> Consultar calendário
+              de provas
+            </li>
+            <li>
+              <span class="check-icon check-aluno">✓</span> Receber avisos da
+              escola
+            </li>
+            <li>
+              <span class="check-icon check-aluno">✓</span> Ver histórico
+              completo de notas
+            </li>
+          </ul>
+        </div>
+
+        <div class="profile-card profile-prof">
+          <span class="profile-icon">🖊️</span>
+          <h3>Para o Professor</h3>
+          <p>
+            Lance notas, crie atividades e mantenha seus alunos informados com
+            facilidade.
+          </p>
+          <ul class="profile-features">
+            <li>
+              <span class="check-icon check-prof">✓</span> Lançar e editar notas
+              por turma
+            </li>
+            <li>
+              <span class="check-icon check-prof">✓</span> Criar e publicar
+              atividades
+            </li>
+            <li>
+              <span class="check-icon check-prof">✓</span> Adicionar eventos ao
+              calendário
+            </li>
+            <li>
+              <span class="check-icon check-prof">✓</span> Enviar avisos para a
+              turma
+            </li>
+            <li>
+              <span class="check-icon check-prof">✓</span> Visualizar todos os
+              alunos
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COMO FUNCIONA ── -->
+    <section class="how-section">
+      <div class="section-header fade-in" style="text-align: center">
+        <div class="section-tag">Como funciona</div>
+        <h2 class="section-title">Simples e rápido</h2>
+        <p class="section-sub" style="margin: 0 auto">
+          Em 3 passos você já está acessando tudo.
+        </p>
+      </div>
+
+      <div class="steps-grid fade-in">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Faça o login</h4>
+          <p>
+            Use o usuário e senha fornecidos pela escola para entrar na sua
+            conta.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Veja o que terá acesso</h4>
+          <p>Acesse notas, atividades ou o calendário direto no seu painel.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Fique por dentro</h4>
+          <p>Acompanhe tudo em tempo real e nunca perca uma data importante.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="cta-section">
+      <h2>Pronto para começar? 🎓</h2>
+      <p>
+        Acesse agora com os dados fornecidos pela sua escola e comece a
+        acompanhar seu desempenho.
+      </p>
+      <a href="#login" class="btn-white">🚀 Fazer login agora</a>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon">
+              <img src="Vector.png" alt="Logo Cara" />
+            </div>
+            <span class="logo-text">Sistema<span>Car</span>a</span>
+          </a>
+          <p class="footer-desc">
+            Portal escolar desenvolvido para facilitar a comunicação entre
+            alunos e professores da rede pública de ensino.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Acesso</h4>
+          <ul>
+            <li><a href="#">Login do Aluno</a></li>
+            <li><a href="#">Login do Professor</a></li>
+            <li><a href="#">Esqueci minha senha</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Escola</h4>
+          <ul>
+            <li><a href="#">Sobre a escola</a></li>
+            <li><a href="#">Calendário escolar</a></li>
+            <li><a href="#">Fale conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Cara — Todos os direitos reservados</span>
+        <span>Feito com <span>♥</span> para a educação pública</span>
+      </div>
+    </footer>
+
+    <script>
+      const months = [
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro",
+      ];
+      const events = [16, 18, 22, 25];
+      let current = new Date();
+      let viewYear = current.getFullYear();
+      let viewMonth = current.getMonth();
+
+      function renderCalendar() {
+        const grid = document.getElementById("cal-grid");
+        const title = document.getElementById("cal-month-title");
+        title.textContent = months[viewMonth] + " " + viewYear;
+        grid.innerHTML = "";
+
+        const first = new Date(viewYear, viewMonth, 1).getDay();
+        const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+        const prevDays = new Date(viewYear, viewMonth, 0).getDate();
+
+        for (let i = 0; i < first; i++) {
+          const d = document.createElement("div");
+          d.className = "cal-day other-month";
+          d.textContent = prevDays - first + 1 + i;
+          grid.appendChild(d);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const el = document.createElement("div");
+          el.className = "cal-day";
+          if (
+            d === current.getDate() &&
+            viewMonth === current.getMonth() &&
+            viewYear === current.getFullYear()
+          ) {
+            el.classList.add("today");
+          }
+          if (events.includes(d) && viewMonth === current.getMonth()) {
+            el.classList.add("has-event");
+          }
+          el.textContent = d;
+          grid.appendChild(el);
+        }
+
+        const total = first + daysInMonth;
+        const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+        for (let i = 1; i <= remaining; i++) {
+          const d = document.createElement("div");
+          d.className = "cal-day other-month";
+          d.textContent = i;
+          grid.appendChild(d);
+        }
+      }
+
+      document.getElementById("cal-prev").addEventListener("click", () => {
+        viewMonth--;
+        if (viewMonth < 0) {
+          viewMonth = 11;
+          viewYear--;
+        }
+        renderCalendar();
+      });
+
+      document.getElementById("cal-next").addEventListener("click", () => {
+        viewMonth++;
+        if (viewMonth > 11) {
+          viewMonth = 0;
+          viewYear++;
+        }
+        renderCalendar();
+      });
+
+      renderCalendar();
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+              setTimeout(() => e.target.classList.add("visible"), i * 80);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
