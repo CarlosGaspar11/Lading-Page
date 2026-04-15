@@ -47,6 +47,12 @@
         overflow-x: hidden;
       }
 
+      .alinhar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       /* ── HEADER ── */
       header {
         position: fixed;
@@ -57,7 +63,7 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(1.2rem);
         border-bottom: 0.1rem solid var(--gray-border);
-        padding: 0 2rem;
+        padding: 0 2rem 0 2rem;
         height: 6.8rem;
         display: flex;
         align-items: center;
@@ -66,88 +72,87 @@
         & .logo {
           display: flex;
           align-items: center;
-          gap: 1rem;
+          gap: 3rem;
           text-decoration: none;
-
-          & .logo-icon {
-            width: 5rem;
-            height: 5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            & img {
-              width: 100%;
-              height: 100%;
-              object-fit: contain;
-            }
-          }
-
-          & .logo-text {
-            font-family: "Sora", sans-serif;
-            font-weight: 700;
-            font-size: 2rem;
-            color: var(--dark);
-
-            & span {
-              color: var(--primary);
-            }
-          }
+          padding-left: 3rem;
         }
 
-        & nav {
+        & .logo-icon {
+          width: 5rem;
           display: flex;
           align-items: center;
-          gap: 2rem;
+          justify-content: center;
 
-          & a {
-            text-decoration: none;
-            color: var(--gray);
-            font-weight: 600;
-            font-size: 1.4rem;
-            transition: color 0.2s;
-
-            &:hover {
-              color: var(--primary);
-            }
-
-            &.btn-login {
-              background: var(--primary);
-              color: var(--white);
-              padding: 0.6rem 1.4rem;
-              border-radius: 5rem;
-              font-weight: 700;
-              transition:
-                background 0.2s,
-                transform 0.2s;
-              box-shadow: 0 0.4rem 1.2rem rgba(245, 166, 35, 0.35);
-
-              &:hover {
-                background: var(--primary-dark);
-                color: var(--white);
-                transform: translateY(-0.1rem);
-              }
-            }
+          & img {
+            width: 8rem;
+            object-fit: contain;
           }
         }
 
-        & .hamburger {
-          display: none;
-          flex-direction: column;
-          gap: 0.5rem;
-          cursor: pointer;
-          background: none;
-          border: none;
-          padding: 0.4rem;
+        & .logo-text {
+          font-family: "Sora", sans-serif;
+          font-weight: 700;
+          font-size: 2rem;
+          color: var(--dark);
 
           & span {
-            display: block;
-            width: 2.4rem;
-            height: 0.2rem;
-            background: var(--dark);
-            border-radius: 0.2rem;
-            transition: all 0.3s;
+            color: var(--primary);
           }
+        }
+      }
+
+      & nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        & a {
+          text-decoration: none;
+          color: var(--gray);
+          font-weight: 600;
+          font-size: 1.4rem;
+          transition: color 0.2s;
+
+          &:hover {
+            color: var(--primary);
+          }
+
+          &.btn-login {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.6rem 1.4rem;
+            border-radius: 5rem;
+            font-weight: 700;
+            transition:
+              background 0.2s,
+              transform 0.2s;
+            box-shadow: 0 0.4rem 1.2rem rgba(245, 166, 35, 0.35);
+
+            &:hover {
+              background: var(--primary-dark);
+              color: var(--white);
+              transform: translateY(-0.1rem);
+            }
+          }
+        }
+      }
+
+      & .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0.4rem;
+
+        & span {
+          display: block;
+          width: 2.4rem;
+          height: 0.2rem;
+          background: var(--dark);
+          border-radius: 0.2rem;
+          transition: all 0.3s;
         }
       }
 
@@ -280,7 +285,7 @@
             &.hcard-main {
               width: 30rem;
               left: 2rem;
-              top: 2rem;
+              top: 7rem;
               z-index: 3;
               animation: float 4s ease-in-out infinite;
             }
@@ -288,7 +293,7 @@
             &.hcard-back1 {
               width: 28rem;
               left: 1rem;
-              top: 1rem;
+              top: 5rem;
               z-index: 2;
               background: #fff8e1;
               transform: rotate(-3deg);
@@ -297,7 +302,7 @@
             &.hcard-back2 {
               width: 26rem;
               left: 3rem;
-              top: 0;
+              top: 4rem;
               z-index: 1;
               background: #fff3cd;
               transform: rotate(4deg);
@@ -394,14 +399,14 @@
           white-space: nowrap;
 
           &.fb-1 {
-            bottom: 3rem;
+            bottom: 9rem;
             left: -3rem;
             color: #16a34a;
             animation: float 3.5s ease-in-out infinite 0.5s;
           }
 
           &.fb-2 {
-            top: 1rem;
+            top: 5rem;
             right: -2rem;
             color: var(--primary-dark);
             animation: float 3s ease-in-out infinite 1s;
@@ -1035,6 +1040,10 @@
         color: rgba(255, 255, 255, 0.6);
         padding: 3rem 5% 2rem;
 
+        & .footer-logo {
+          width: 15rem;
+        }
+
         & .footer-grid {
           display: grid;
           grid-template-columns: 2fr 1fr 1fr;
@@ -1090,7 +1099,7 @@
           border-top: 0.1rem solid rgba(255, 255, 255, 0.08);
           padding-top: 1.5rem;
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
           align-items: center;
           font-size: 1.2rem;
           flex-wrap: wrap;
@@ -1182,7 +1191,9 @@
         <div class="logo-icon">
           <img src="logo.png" alt="Logo Cara" />
         </div>
-        <span class="logo-text">C<span>ar</span>a</span>
+        <span class="logo-text"
+          >Sistema de <span>Gerenciamento Escolar</span></span
+        >
       </a>
 
       <nav>
@@ -1199,29 +1210,33 @@
 
     <!-- ── HERO ── -->
     <section class="hero">
-      <div class="hero-content fade-in">
-        <div class="hero-badge">✨ Portal Escolar 2025</div>
-        <h1>Seu aprendizado<br />em um só <em>lugar</em></h1>
-        <p>
-          Acesse suas notas, acompanhe atividades, veja o calendário escolar e
-          fique por dentro de tudo — do fundamental ao médio.
-        </p>
-        <div class="hero-btns">
-          <a href="#login" class="btn-primary">🚀 Acessar minha conta</a>
-          <a href="#funcionalidades" class="btn-outline">Ver funcionalidades</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number">500+</span>
-            <span class="stat-label">Alunos</span>
+      <div class="alinhar">
+        <div class="hero-content fade-in">
+          <div class="hero-badge">✨ Portal Escolar 2025</div>
+          <h1>Seu aprendizado<br />em um só <em>lugar</em></h1>
+          <p>
+            Acesse suas notas, acompanhe atividades, veja o calendário escolar e
+            fique por dentro de tudo — do fundamental ao médio.
+          </p>
+          <div class="hero-btns">
+            <a href="#login" class="btn-primary">🚀 Acessar minha conta</a>
+            <a href="#funcionalidades" class="btn-outline"
+              >Ver funcionalidades</a
+            >
           </div>
-          <div class="stat-item">
-            <span class="stat-number">40+</span>
-            <span class="stat-label">Professores</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">18</span>
-            <span class="stat-label">Turmas</span>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Alunos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">40+</span>
+              <span class="stat-label">Professores</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">18</span>
+              <span class="stat-label">Turmas</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1560,10 +1575,11 @@
         <div class="footer-brand">
           <a href="#" class="logo">
             <div class="logo-icon">
-              <img src="Vector.png" alt="Logo Cara" />
+              <img class="footer-logo" src="Vector.png" alt="Logo Cara" />
             </div>
-            <span class="logo-text">Sistema<span>Car</span>a</span>
+            <span class="logo-text">Sistema<span>Cara</span></span>
           </a>
+
           <p class="footer-desc">
             Portal escolar desenvolvido para facilitar a comunicação entre
             alunos e professores da rede pública de ensino.
@@ -1591,7 +1607,6 @@
 
       <div class="footer-bottom">
         <span>© 2025 Cara — Todos os direitos reservados</span>
-        <span>Feito com <span>♥</span> para a educação pública</span>
       </div>
     </footer>
 
